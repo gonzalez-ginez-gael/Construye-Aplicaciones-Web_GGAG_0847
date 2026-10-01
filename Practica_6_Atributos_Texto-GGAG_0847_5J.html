@@ -1,7 +1,6 @@
 <!-- Gonzalez Ginez Andres Gael / 0847 / 5J -->
 <html>
 
-<!-- Encabezado del documento -->
 <head>
 <title>Semaforo TRIAGE</title>
 </head>
@@ -15,27 +14,47 @@
 <font color="gray" size="3">urgencias</font>
 <br><br>
 
-<font color="blue" size="3"><b>Tipo de atención - Área de atención - Tiempo de espera</b></font>
-<br><br>
+<!-- table = tabla, border="1" = muestra el borde, width = el ancho de la tabla -->
+<table border="1" width="100%">
 
-<font color="red" size="6"><b><i>Reanimación</i></b></font><br>
-<font color="red" size="3">Área de reanimación - Inmediato hasta 3 min</font>
-<br><br>
+  <!-- tr = fila, th = celda de encabezado, td = celda de datos -->
+  <tr>
+    <th><font color="blue" size="3">Tipo de atención</font></th>
+    <th><font color="blue" size="3">Área de atención</font></th>
+    <th><font color="blue" size="3">Tiempo de espera</font></th>
+  </tr>
 
-<font color="orange" size="6"><b><i>Emergencia</i></b></font><br>
-<font color="orange" size="3">Área de reanimación - Inmediato hasta 10 min</font>
-<br><br>
+  <tr>
+    <td><font color="red" size="6"><b><i>Reanimación</i></b></font></td>
+    <td><font color="red" size="3">Área de reanimación</font></td>
+    <td><font color="red" size="3">Inmediato hasta 3 min</font></td>
+  </tr>
 
-<font color="gold" size="6"><b><i>Urgencia</i></b></font><br>
-<font color="gold" size="3">Consultorio de primer contacto - Hasta 30 min</font>
-<br><br>
+  <tr>
+    <td><font color="orange" size="6"><b><i>Emergencia</i></b></font></td>
+    <td><font color="orange" size="3">Área de reanimación</font></td>
+    <td><font color="orange" size="3">Inmediato hasta 10 min</font></td>
+  </tr>
 
-<font color="green" size="6"><b><i>Urgencia menor</i></b></font><br>
-<font color="green" size="3">Consultorio de primer contacto o UMF - Hasta 120 min</font>
-<br><br>
+  <tr>
+    <td><font color="gold" size="6"><b><i>Urgencia</i></b></font></td>
+    <td><font color="gold" size="3">Consultorio de primer contacto</font></td>
+    <td><font color="gold" size="3">Hasta 30 min</font></td>
+  </tr>
 
-<font color="blue" size="6"><b><i>Sin urgencia</i></b></font><br>
-<font color="blue" size="3">Consultorio de primer contacto o UMF - Hasta 180 min</font>
+  <tr>
+    <td><font color="green" size="6"><b><i>Urgencia menor</i></b></font></td>
+    <td><font color="green" size="3">Consultorio de primer contacto o UMF</font></td>
+    <td><font color="green" size="3">Hasta 120 min</font></td>
+  </tr>
+
+  <tr>
+    <td><font color="blue" size="6"><b><i>Sin urgencia</i></b></font></td>
+    <td><font color="blue" size="3">Consultorio de primer contacto o UMF</font></td>
+    <td><font color="blue" size="3">Hasta 180 min</font></td>
+  </tr>
+
+</table>
 
 </body>
 </html>
