@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Guía iPhone</title>
+<style>
+  /* Colores principales del sitio */
+  :root { --fondo:#f5f5f7; --texto:#1d1d1f; --gris:#6e6e73; --azul:#0071e3; --borde:#d2d2d7; --tarjeta:#fff; --th:#fafafa; --banda:#ebebef; --sec:#e8e8ed; --sec-h:#d2d2d7; --pro:rgba(0,113,227,.07); --fila:rgba(0,0,0,.025); --sombra:0 2px 12px rgba(0,0,0,.06); --sombra-h:0 12px 30px rgba(0,0,0,.13); --nav:rgba(29,29,31,.92); box-sizing:border-box; }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --fondo:#111113; --texto:#f5f5f7; --gris:#a1a1a6; --borde:#38383c; --tarjeta:#1c1c1e; --th:#242426; --banda:#19191b; --sec:#2c2c2e; --sec-h:#3a3a3c; --pro:rgba(10,132,255,.14); --fila:rgba(255,255,255,.04); --sombra:0 2px 12px rgba(0,0,0,.4); --sombra-h:0 12px 30px rgba(0,0,0,.6); } }
+  :root[data-theme="dark"] { --fondo:#111113; --texto:#f5f5f7; --gris:#a1a1a6; --borde:#38383c; --tarjeta:#1c1c1e; --th:#242426; --banda:#19191b; --sec:#2c2c2e; --sec-h:#3a3a3c; --pro:rgba(10,132,255,.14); --fila:rgba(255,255,255,.04); --sombra:0 2px 12px rgba(0,0,0,.4); --sombra-h:0 12px 30px rgba(0,0,0,.6); }
+  * { box-sizing:border-box; }
+  html { scroll-behavior:smooth; scroll-padding-top:calc(env(safe-area-inset-top,0px) + 64px); }
+  body { margin:0; font-family:-apple-system,"Helvetica Neue",Arial,sans-serif; -webkit-font-smoothing:antialiased; background:var(--fondo); color:var(--texto); line-height:1.5; }
+  a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible, summary:focus-visible { outline:3px solid var(--azul); outline-offset:2px; }
+  /* Encabezado principal con resplandor azul */
+  header { background:radial-gradient(70% 90% at 50% 0%,rgba(0,113,227,.4),transparent 70%),linear-gradient(180deg,#000,#1c1c1e); color:#fff; text-align:center; padding:calc(env(safe-area-inset-top,0px) + 80px) 20px 72px; }
+  header h1 { font-size:clamp(3rem,9vw,4.4rem); font-weight:700; letter-spacing:-.03em; line-height:1.05; margin:0 0 12px; background:linear-gradient(180deg,#fff 30%,#a1a1a6); -webkit-background-clip:text; background-clip:text; color:transparent; }
+  header p { color:#a1a1a6; margin:0 auto 28px; font-size:1.15rem; max-width:520px; }
+  header .btn + .btn { margin-left:8px; }
+  /* Barra de navegación fija y translúcida */
+  nav { background:var(--nav); -webkit-backdrop-filter:saturate(180%) blur(14px); backdrop-filter:saturate(180%) blur(14px); text-align:center; padding:8px; position:sticky; top:env(safe-area-inset-top,0px); z-index:5; }
+  nav a { display:inline-block; color:#f5f5f7; text-decoration:none; margin:2px; padding:6px 14px; font-size:.9rem; border-radius:980px; transition:background .2s; }
+  nav a:hover { background:rgba(255,255,255,.16); }
+  /* Contenido central */
+  .wrap { max-width:960px; margin:auto; padding:0 20px; }
+  section { padding:56px 0 16px; }
+  .etiqueta { display:block; color:var(--azul); font-size:.75rem; font-weight:600; letter-spacing:.12em; text-transform:uppercase; margin-bottom:4px; }
+  h2 { font-size:2rem; font-weight:700; letter-spacing:-.01em; margin:0 0 14px; }
+  h2::after { content:""; display:block; width:44px; height:4px; border-radius:4px; background:var(--azul); margin-top:8px; }
+  h3 { margin:12px 0 4px; }
+  h3.sub { font-size:1.15rem; margin:40px 0 0; }
+  p.intro { color:var(--gris); margin:0; }
+  /* Botones */
+  .btn { background:var(--azul); color:#fff; border:none; border-radius:980px; padding:12px 26px; font-size:1rem; cursor:pointer; transition:background .2s, transform .2s; }
+  .btn:hover { background:#0077ed; transform:translateY(-1px); }
+  a.btn { display:inline-block; text-decoration:none; }
+  .btn-sec { background:var(--sec); color:var(--texto); }
+  .btn-sec:hover { background:var(--sec-h); }
+  header .btn-claro { background:rgba(255,255,255,.14); color:#fff; }
+  header .btn-claro:hover { background:rgba(255,255,255,.24); }
+  /* Datos rápidos (debajo de la barra, con separación normal) */
+  .datos { display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:8px; background:var(--tarjeta); border-radius:24px; box-shadow:var(--sombra); margin-top:28px; padding:20px 12px; }
+  .datos div { text-align:center; padding:4px 8px; }
+  .datos strong { display:block; font-size:1.7rem; font-weight:700; color:var(--azul); line-height:1.2; }
+  .datos span { font-size:.85rem; color:var(--gris); }
+  /* Tarjetas de los modelos */
+  .modelos { display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:16px; margin-top:18px; }
+  .tarjeta { position:relative; background:var(--tarjeta); border-radius:22px; padding:16px 16px 20px; text-align:center; box-shadow:var(--sombra); transition:transform .2s, box-shadow .2s; animation:entra .6s ease both; }
+  .tarjeta:nth-child(2){animation-delay:.08s} .tarjeta:nth-child(3){animation-delay:.16s} .tarjeta:nth-child(4){animation-delay:.24s}
+  .tarjeta:hover { transform:translateY(-5px); box-shadow:var(--sombra-h); }
+  .vista { border-radius:16px; padding:8px; }
+  .c1 { background:linear-gradient(160deg,#dfe9ff,#f3f6ff); } .c2 { background:linear-gradient(160deg,#ffe3ec,#fff4f7); }
+  .c3 { background:linear-gradient(160deg,#e9e4da,#f7f4ee); } .c4 { background:linear-gradient(160deg,#d9dde4,#f0f2f5); }
+  .c5 { background:linear-gradient(160deg,#e3f1ec,#f4faf8); } .c6 { background:linear-gradient(160deg,#e6e6fb,#f6f6fe); }
+  .c7 { background:linear-gradient(160deg,#fdf0d9,#fffaf1); } .c8 { background:linear-gradient(160deg,#dde3ee,#f2f4f8); }
+  .vista svg { width:100%; height:auto; display:block; }
+  /* Teléfonos dibujados con CSS (modelos nuevos) */
+  .tel { position:relative; width:64px; height:128px; border-radius:16px; background:var(--c,#2c2c2e); margin:30px auto; box-shadow:inset 0 0 0 3px rgba(0,0,0,.25); }
+  .tel::before { content:""; position:absolute; top:8px; left:8px; width:20px; height:26px; border-radius:7px; background:rgba(0,0,0,.45); }
+  .tel.air { width:60px; height:140px; border-radius:20px; }
+  .tel.air::before { width:44px; height:12px; left:8px; top:8px; }
+  .tel.duo { width:112px; height:120px; border-radius:14px; }
+  .tel.duo::after { content:""; position:absolute; left:50%; top:0; bottom:0; width:3px; background:rgba(0,0,0,.4); }
+  .tarjeta p { color:var(--gris); font-size:.9rem; margin:4px 0 0; }
+  .chips { list-style:none; display:flex; justify-content:center; gap:6px; padding:0; margin:12px 0 0; }
+  .chips li { font-size:.75rem; background:var(--sec); color:var(--texto); padding:3px 10px; border-radius:980px; }
+  .desde { margin-top:12px; font-size:.9rem; color:var(--gris); } .desde b { color:var(--texto); font-size:1.15rem; }
+  .pro { position:absolute; top:26px; right:26px; background:var(--azul); color:#fff; font-size:.7rem; font-weight:600; padding:3px 10px; border-radius:980px; letter-spacing:.04em; }
+  @keyframes entra { from { opacity:0; transform:translateY(14px); } to { opacity:1; transform:none; } }
+  /* Compañeros del iPhone */
+  .minis { display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:12px; margin-top:16px; }
+  .mini { background:var(--tarjeta); border-radius:20px; padding:18px; box-shadow:var(--sombra); transition:transform .2s; }
+  .mini:hover { transform:translateY(-3px); }
+  .mini i { display:flex; align-items:center; justify-content:center; width:38px; height:38px; border-radius:50%; background:var(--pro); color:var(--azul); font-style:normal; font-weight:700; margin-bottom:8px; }
+  .mini b { display:block; } .mini span { color:var(--gris); font-size:.88rem; }
+  /* Tablas */
+  .tabla-wrap { overflow-x:auto; background:var(--tarjeta); border-radius:22px; margin-top:18px; box-shadow:var(--sombra); }
+  table { border-collapse:collapse; width:100%; min-width:560px; }
+  th, td { padding:13px 14px; text-align:left; border-bottom:1px solid var(--borde); font-size:.95rem; }
+  th { background:var(--th); font-weight:600; }
+  tr:last-child td { border-bottom:none; }
+  tbody tr:hover td { background-image:linear-gradient(var(--fila),var(--fila)); }
+  .comp th:first-child, .comp td:first-child { position:sticky; left:0; background-color:var(--tarjeta); font-weight:600; }
+  .comp th:first-child { background-color:var(--th); }
+  .comp th:nth-child(n+4) { color:var(--azul); }
+  .comp th:nth-child(n+4), .comp td:nth-child(n+4) { background-color:var(--pro); }
+  .precio { font-weight:700; font-size:1.05rem; }
+  .punto { display:inline-block; width:11px; height:11px; border-radius:50%; margin:0 4px 0 8px; vertical-align:-1px; border:1px solid rgba(0,0,0,.18); }
+  .punto:first-child { margin-left:0; }
+  .banda { background:var(--banda); margin-top:40px; padding-bottom:28px; }
+  /* Preguntas frecuentes (desplegables sin JavaScript) */
+  details { background:var(--tarjeta); border-radius:16px; box-shadow:var(--sombra); margin-top:10px; }
+  summary { cursor:pointer; list-style:none; padding:16px 20px; font-weight:600; display:flex; justify-content:space-between; gap:12px; }
+  summary::-webkit-details-marker { display:none; }
+  summary::after { content:"+"; color:var(--azul); font-size:1.4rem; line-height:1; }
+  details[open] summary::after { content:"−"; }
+  details p { margin:0; padding:0 20px 18px; color:var(--gris); }
+  /* Contacto en tarjeta grande */
+  .contacto-card { background:var(--tarjeta); border-radius:28px; padding:48px 24px; text-align:center; box-shadow:var(--sombra); }
+  .contacto-card h2::after { margin-left:auto; margin-right:auto; }
+  .contacto-card p { color:var(--gris); margin:0 0 22px; }
+  /* Pie de página */
+  footer { text-align:center; color:var(--gris); font-size:.85rem; padding:40px 20px calc(40px + env(safe-area-inset-bottom,0px)); margin-top:40px; border-top:1px solid var(--borde); }
+  /* Botón volver arriba */
+  .arriba { position:fixed; right:16px; bottom:calc(16px + env(safe-area-inset-bottom,0px)); width:44px; height:44px; border-radius:50%; background:var(--azul); color:#fff; text-decoration:none; display:flex; align-items:center; justify-content:center; font-size:1.3rem; box-shadow:var(--sombra-h); z-index:4; transition:transform .2s; }
+  .arriba:hover { transform:translateY(-3px); }
+  /* Formulario (ventana emergente, solo CSS con :target) */
+  #fondo { display:none; position:fixed; inset:0; background:rgba(0,0,0,.55); -webkit-backdrop-filter:blur(4px); backdrop-filter:blur(4px); align-items:center; justify-content:center; padding:16px; z-index:10; }
+  #fondo:target, #fondo:has(#gracias:target) { display:flex; }
+  .formulario { background:var(--tarjeta); border-radius:22px; padding:24px; width:100%; max-width:420px; max-height:100%; overflow:auto; box-shadow:var(--sombra-h); }
+  .formulario h2 { margin-bottom:6px; }
+  .formulario label { display:block; margin-top:12px; font-size:.9rem; }
+  .formulario input, .formulario select, .formulario textarea { width:100%; padding:10px; margin-top:4px; border:1px solid var(--borde); border-radius:10px; font:inherit; background:var(--tarjeta); color:var(--texto); transition:border-color .2s, box-shadow .2s; }
+  .formulario input:focus, .formulario select:focus, .formulario textarea:focus { outline:none; border-color:var(--azul); box-shadow:0 0 0 4px rgba(0,113,227,.2); }
+  .acciones { display:flex; gap:10px; margin-top:18px; }
+  /* Mensaje de gracias: solo simula el envío, no se manda ningún dato */
+  #gracias { color:#1a7f37; margin-top:12px; display:none; }
+  #gracias:target { display:block; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior:auto; } .tarjeta { animation:none; } * { transition:none !important; } }
+</style>
+</head>
+<body>
+<!-- Encabezado con título y botones -->
+<header id="inicio">
+  <h1>iPhone</h1>
+  <p>Conoce los modelos, compara sus características y contáctanos.</p>
+  <a class="btn" href="#fondo">Contacto</a><a class="btn btn-claro" href="#modelos">Ver modelos</a>
+</header>
+
+<!-- Menú de navegación -->
+<nav>
+  <a href="#modelos">Modelos</a>
+  <a href="#comparativa">Comparativa</a>
+  <a href="#precios">Precios</a>
+  <a href="#preguntas">Preguntas</a>
+  <a href="#contacto">Contacto</a>
+</nav>
+
+<main>
+  <!-- Datos rápidos -->
+  <div class="wrap"><div class="datos">
+    <div><strong>10</strong><span>modelos de iPhone</span></div>
+    <div><strong>$699</strong><span>precio inicial más bajo</span></div>
+    <div><strong>$1,999</strong><span>precio más alto</span></div>
+    <div><strong>1 TB</strong><span>almacenamiento máximo</span></div>
+  </div></div>
+
+  <!-- Modelos -->
+  <section id="modelos"><div class="wrap">
+    <span class="etiqueta">Elige</span>
+    <h2>Modelos</h2>
+    <p class="intro">Elige entre los iPhone 16 y los modelos más recientes.</p>
+
+    <h3 class="sub">Familia iPhone 16</h3>
+    <div class="modelos">
+      <div class="tarjeta">
+        <div class="vista c1"><svg viewBox="0 0 200 240" role="img" aria-label="iPhone 16, ilustración"><rect x="64" y="20" width="72" height="200" rx="16" fill="#2c2c2e"/><rect x="69" y="26" width="62" height="188" rx="12" fill="#0071e3" opacity=".3"/><rect x="73" y="30" width="22" height="30" rx="8" fill="#1d1d1f"/><circle cx="80" cy="38" r="4" fill="#6e6e73"/><circle cx="80" cy="52" r="4" fill="#6e6e73"/></svg></div>
+        <h3>iPhone 16</h3><p>El modelo base, equilibrado y accesible.</p>
+        <ul class="chips"><li>6.1"</li><li>A18</li></ul><div class="desde">Desde <b>$799</b></div>
+      </div>
+      <div class="tarjeta">
+        <div class="vista c2"><svg viewBox="0 0 200 240" role="img" aria-label="iPhone 16 Plus, ilustración"><rect x="56" y="14" width="88" height="212" rx="18" fill="#2c2c2e"/><rect x="61" y="20" width="78" height="200" rx="14" fill="#f4b6c2" opacity=".55"/><rect x="66" y="25" width="24" height="32" rx="8" fill="#1d1d1f"/><circle cx="74" cy="34" r="4" fill="#6e6e73"/><circle cx="74" cy="48" r="4" fill="#6e6e73"/></svg></div>
+        <h3>iPhone 16 Plus</h3><p>Pantalla más grande y mayor batería.</p>
+        <ul class="chips"><li>6.7"</li><li>A18</li></ul><div class="desde">Desde <b>$899</b></div>
+      </div>
+      <div class="tarjeta"><span class="pro">Pro</span>
+        <div class="vista c3"><svg viewBox="0 0 200 240" role="img" aria-label="iPhone 16 Pro, ilustración"><rect x="62" y="18" width="76" height="204" rx="16" fill="#8a8578"/><rect x="67" y="24" width="66" height="192" rx="12" fill="#1d1d1f" opacity=".85"/><rect x="71" y="28" width="30" height="32" rx="9" fill="#5c5850"/><circle cx="79" cy="36" r="4" fill="#1d1d1f"/><circle cx="93" cy="36" r="4" fill="#1d1d1f"/><circle cx="86" cy="50" r="4" fill="#1d1d1f"/></svg></div>
+        <h3>iPhone 16 Pro</h3><p>Titanio, tres cámaras y chip más potente.</p>
+        <ul class="chips"><li>6.3"</li><li>A18 Pro</li></ul><div class="desde">Desde <b>$999</b></div>
+      </div>
+      <div class="tarjeta"><span class="pro">Pro</span>
+        <div class="vista c4"><svg viewBox="0 0 200 240" role="img" aria-label="iPhone 16 Pro Max, ilustración"><rect x="54" y="12" width="92" height="216" rx="18" fill="#8a8578"/><rect x="59" y="18" width="82" height="204" rx="14" fill="#1d1d1f" opacity=".85"/><rect x="64" y="23" width="32" height="34" rx="9" fill="#5c5850"/><circle cx="72" cy="32" r="4" fill="#1d1d1f"/><circle cx="87" cy="32" r="4" fill="#1d1d1f"/><circle cx="79" cy="47" r="4" fill="#1d1d1f"/></svg></div>
+        <h3>iPhone 16 Pro Max</h3><p>La pantalla más grande y la mejor batería.</p>
+        <ul class="chips"><li>6.9"</li><li>A18 Pro</li></ul><div class="desde">Desde <b>$1,199</b></div>
+      </div>
+    </div>
+
+    <h3 class="sub">Más modelos de iPhone</h3>
+    <div class="modelos">
+      <div class="tarjeta">
+        <div class="vista c5"><div class="tel" style="--c:#3b5a52"></div></div>
+        <h3>iPhone 17e</h3><p>La entrada más accesible a la generación 17.</p>
+        <ul class="chips"><li>Gen. 17</li><li>Accesible</li></ul><div class="desde">Desde <b>$699</b></div>
+      </div>
+      <div class="tarjeta">
+        <div class="vista c6"><div class="tel" style="--c:#4a5fd0"></div></div>
+        <h3>iPhone 17</h3><p>El iPhone estándar de la generación 17.</p>
+        <ul class="chips"><li>Gen. 17</li><li>Estándar</li></ul><div class="desde">Desde <b>$899</b></div>
+      </div>
+      <div class="tarjeta">
+        <div class="vista c7"><div class="tel air" style="--c:#b8b0a2"></div></div>
+        <h3>iPhone Air</h3><p>Una opción delgada y ligera.</p>
+        <ul class="chips"><li>Gen. 17</li><li>Delgado</li></ul><div class="desde">Desde <b>$1,099</b></div>
+      </div>
+      <div class="tarjeta"><span class="pro">Pro</span>
+        <div class="vista c8"><div class="tel" style="--c:#3c3c3d"></div></div>
+        <h3>iPhone 18 Pro</h3><p>Rendimiento Pro de la generación 18.</p>
+        <ul class="chips"><li>Gen. 18</li><li>Pro</li></ul><div class="desde">Desde <b>$1,199</b></div>
+      </div>
+      <div class="tarjeta"><span class="pro">Pro</span>
+        <div class="vista c8"><div class="tel" style="--c:#c9a98b;width:72px;height:140px"></div></div>
+        <h3>iPhone 18 Pro Max</h3><p>La versión más grande de la gama Pro.</p>
+        <ul class="chips"><li>Gen. 18</li><li>Pro</li></ul><div class="desde">Desde <b>$1,299</b></div>
+      </div>
+      <div class="tarjeta"><span class="pro">Nuevo</span>
+        <div class="vista c6"><div class="tel duo" style="--c:#2c2c2e"></div></div>
+        <h3>iPhone Duo</h3><p>El primer iPhone plegable. Disponible desde el 23 de octubre.</p>
+        <ul class="chips"><li>Gen. 18</li><li>Plegable</li></ul><div class="desde">Desde <b>$1,999</b></div>
+      </div>
+    </div>
+
+    <h3 class="sub">Compañeros del iPhone</h3>
+    <div class="minis">
+      <div class="mini"><i>i</i><b>iPad</b><span>Una pantalla grande para trabajar, estudiar y dibujar, sincronizada con tu iPhone.</span></div>
+      <div class="mini"><i>W</i><b>Apple Watch</b><span>Recibe notificaciones y mide tu actividad desde la muñeca.</span></div>
+      <div class="mini"><i>A</i><b>AirPods</b><span>Audífonos inalámbricos que se conectan a tu iPhone en segundos.</span></div>
+      <div class="mini"><i>M</i><b>MagSafe y cargadores</b><span>Cargadores y fundas magnéticas para tu iPhone.</span></div>
+    </div>
+  </div></section>
+
+  <!-- Comparativa -->
+  <section id="comparativa"><div class="wrap">
+    <span class="etiqueta">Compara</span>
+    <h2>Comparativa de características</h2>
+    <div class="tabla-wrap">
+      <table class="comp">
+        <thead>
+          <tr><th>Característica</th><th>iPhone 16</th><th>iPhone 16 Plus</th><th>iPhone 16 Pro</th><th>iPhone 16 Pro Max</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Pantalla</td><td>6.1"</td><td>6.7"</td><td>6.3"</td><td>6.9"</td></tr>
+          <tr><td>Chip</td><td>A18</td><td>A18</td><td>A18 Pro</td><td>A18 Pro</td></tr>
+          <tr><td>Cámaras traseras</td><td>2</td><td>2</td><td>3</td><td>3</td></tr>
+          <tr><td>Material</td><td>Aluminio</td><td>Aluminio</td><td>Titanio</td><td>Titanio</td></tr>
+          <tr><td>Almacenamiento</td><td>128 GB a 512 GB</td><td>128 GB a 512 GB</td><td>128 GB a 1 TB</td><td>256 GB a 1 TB</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div></section>
+
+  <!-- Precios (fondo alterno) -->
+  <div class="banda"><section id="precios"><div class="wrap">
+    <span class="etiqueta">Precios</span>
+    <h2>Precios Estimados</h2>
+    <p class="intro">Precios aproximados en dólares. Pueden variar según tienda, país y promociones. Apple ya no vende el iPhone 16 Plus como modelo nuevo.</p>
+    <div class="tabla-wrap">
+      <table>
+        <thead><tr><th>Modelo</th><th>Desde</th><th>Colores</th></tr></thead>
+        <tbody>
+          <tr><td>iPhone 16</td><td class="precio">$799</td><td><span class="punto" style="background:#1d1d1f"></span>Negro, <span class="punto" style="background:#f5f5f7"></span>blanco, <span class="punto" style="background:#f4b6c2"></span>rosa, <span class="punto" style="background:#8fc1b5"></span>verde azulado, <span class="punto" style="background:#4a5fd0"></span>ultramarino</td></tr>
+          <tr><td>iPhone 16 Plus</td><td class="precio">$899</td><td><span class="punto" style="background:#1d1d1f"></span>Negro, <span class="punto" style="background:#f5f5f7"></span>blanco, <span class="punto" style="background:#f4b6c2"></span>rosa, <span class="punto" style="background:#8fc1b5"></span>verde azulado, <span class="punto" style="background:#4a5fd0"></span>ultramarino</td></tr>
+          <tr><td>iPhone 16 Pro</td><td class="precio">$999</td><td><span class="punto" style="background:#3c3c3d"></span>Titanio negro, <span class="punto" style="background:#f2f1ed"></span>blanco, <span class="punto" style="background:#b8b0a2"></span>natural, <span class="punto" style="background:#c9a98b"></span>desierto</td></tr>
+          <tr><td>iPhone 16 Pro Max</td><td class="precio">$1,199</td><td><span class="punto" style="background:#3c3c3d"></span>Titanio negro, <span class="punto" style="background:#f2f1ed"></span>blanco, <span class="punto" style="background:#b8b0a2"></span>natural, <span class="punto" style="background:#c9a98b"></span>desierto</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <h3 class="sub">Más modelos</h3>
+    <div class="tabla-wrap">
+      <table>
+        <thead><tr><th>Modelo</th><th>Desde</th><th>Nota</th></tr></thead>
+        <tbody>
+          <tr><td>iPhone 17e</td><td class="precio">$699</td><td>La entrada más accesible de la generación 17</td></tr>
+          <tr><td>iPhone 17</td><td class="precio">$899</td><td>El iPhone estándar de la generación 17</td></tr>
+          <tr><td>iPhone Air</td><td class="precio">$1,099</td><td>Opción delgada y ligera</td></tr>
+          <tr><td>iPhone 18 Pro</td><td class="precio">$1,199</td><td>Gama Pro de la generación 18</td></tr>
+          <tr><td>iPhone 18 Pro Max</td><td class="precio">$1,299</td><td>Versión más grande de la gama Pro</td></tr>
+          <tr><td>iPhone Duo</td><td class="precio">$1,999</td><td>Primer iPhone plegable, disponible desde el 23 de octubre</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div></section></div>
+
+  <!-- Preguntas frecuentes -->
+  <section id="preguntas"><div class="wrap">
+    <span class="etiqueta">Dudas</span>
+    <h2>Preguntas frecuentes</h2>
+    <details><summary>¿Qué diferencia hay entre el iPhone 16 y el 16 Pro?</summary>
+      <p>El Pro es de titanio, tiene tres cámaras traseras y usa el chip A18 Pro. El iPhone 16 es de aluminio, tiene dos cámaras y chip A18.</p></details>
+    <details><summary>¿Qué modelo del iPhone 16 tiene la pantalla más grande y la mejor batería?</summary>
+      <p>El iPhone 16 Pro Max, con pantalla de 6.9".</p></details>
+    <details><summary>¿Los precios son exactos?</summary>
+      <p>No, son aproximados y pueden variar según la tienda y el país.</p></details>
+    <details><summary>¿Todos los modelos siguen a la venta?</summary>
+      <p>No necesariamente. Por ejemplo, Apple ya retiró el iPhone 16 Plus, así que conviene revisar la disponibilidad antes de comprar.</p></details>
+  </div></section>
+
+  <!-- Contacto en tarjeta grande -->
+  <section id="contacto"><div class="wrap">
+    <div class="contacto-card">
+      <span class="etiqueta">Escríbenos</span>
+      <h2>¿Tienes dudas?</h2>
+      <p>Escríbenos y te ayudamos a elegir tu iPhone.</p>
+      <a class="btn" href="#fondo">Contacto</a>
+    </div>
+  </div></section>
+</main>
+
+<!-- Pie de página -->
+<footer>Gonzalez Ginez Andres Gael 0847</footer>
+
+<!-- Botón volver arriba -->
+<a class="arriba" href="#inicio" aria-label="Volver arriba">↑</a>
+
+<!-- Formulario emergente -->
+<div id="fondo">
+  <div class="formulario">
+    <h2>Contacto</h2>
+    <form id="form" action="#gracias">
+      <label>Nombre<input type="text" name="nombre" required></label>
+      <label>Correo electrónico<input type="email" name="correo" required></label>
+      <label>Modelo de interés
+        <select name="modelo">
+          <option>iPhone 16</option><option>iPhone 16 Plus</option><option>iPhone 16 Pro</option><option>iPhone 16 Pro Max</option>
+          <option>iPhone 17e</option><option>iPhone 17</option><option>iPhone Air</option><option>iPhone 18 Pro</option><option>iPhone 18 Pro Max</option><option>iPhone Duo</option>
+        </select>
+      </label>
+      <label>Mensaje<textarea name="mensaje" rows="3"></textarea></label>
+      <div class="acciones">
+        <button type="submit" class="btn">Enviar</button>
+        <a href="#" class="btn btn-sec">Cerrar</a>
+      </div>
+      <p id="gracias">¡Gracias! Recibimos tu mensaje.</p>
+    </form>
+  </div>
+</div>
+</body>
+</html>
