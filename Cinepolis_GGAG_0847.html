@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Cinépolis - Cartelera y Cinépolis Club</title>
+<style>
+:root{--azul:#0b3a8e;--azul2:#08275f;--amarillo:#ffc400;--fondo:#f4f6fb;--tarjeta:#ffffff;--texto:#1c2333;--suave:#5b6477;--borde:#d9deea;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--fondo:#0f1524;--tarjeta:#19213a;--texto:#eef1f9;--suave:#a5aec6;--borde:#2c3656}}
+:root[data-theme="dark"]{--fondo:#0f1524;--tarjeta:#19213a;--texto:#eef1f9;--suave:#a5aec6;--borde:#2c3656}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:Arial,Helvetica,sans-serif;background:var(--fondo);color:var(--texto);line-height:1.5}
+a{color:inherit;text-decoration:none}
+
+/* Encabezado */
+header{background:var(--azul);color:#fff;text-align:center;padding:24px 16px}
+header h1{margin:0;font-size:2rem;letter-spacing:2px}
+header h1 span{color:var(--amarillo)}
+header p{margin:6px 0 0}
+
+/* Barra de navegación */
+nav{background:var(--azul2);display:flex;flex-wrap:wrap;justify-content:center;gap:4px;padding:8px}
+nav a{color:#fff;padding:8px 16px;border-radius:6px}
+nav a:hover{background:var(--amarillo);color:#000}
+nav a.destacado{background:var(--amarillo);color:#000;font-weight:bold}
+
+/* Cuerpo */
+main{max-width:1000px;margin:0 auto;padding:16px}
+section{margin:32px 0}
+h2{border-left:6px solid var(--amarillo);padding-left:10px;color:var(--azul)}
+@media (prefers-color-scheme:dark){h2{color:var(--amarillo)}}
+
+.peliculas{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:16px}
+.pelicula{background:var(--tarjeta);border:1px solid var(--borde);border-radius:8px;overflow:hidden}
+.cartel{position:relative;overflow:hidden;height:230px;display:flex;flex-direction:column;justify-content:space-between;align-items:center;padding:10px;color:#fff;font-weight:bold;text-align:center}
+.cartel svg{width:100%;height:150px}
+.cartel img{position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover}
+.cartel span{position:relative;z-index:1;width:calc(100% + 20px);margin:0 -10px -10px;padding:6px 10px;background:rgba(0,0,0,.6)}
+.c1{background:radial-gradient(circle at top left,#0b3a8e,#6a11cb)}
+.c2{background:radial-gradient(circle at top left,#c31432,#240b36)}
+.c3{background:radial-gradient(circle at top left,#11998e,#38ef7d)}
+.c4{background:radial-gradient(circle at top left,#f12711,#f5af19)}
+.c5{background:radial-gradient(circle at top left,#1e3c72,#2a5298)}
+.c6{background:radial-gradient(circle at top left,#41295a,#2f0743)}
+.c7{background:radial-gradient(circle at top left,#134e5e,#71b280)}
+.c8{background:radial-gradient(circle at top left,#434343,#000000)}
+.info{padding:10px}
+.info p{margin:2px 0;font-size:.9rem;color:var(--suave)}
+.boton{display:inline-block;margin-top:8px;background:var(--azul);color:#fff;padding:8px 14px;border-radius:6px;font-size:.9rem;border:none;cursor:pointer}
+.boton:hover{background:var(--amarillo);color:#000}
+.fecha{display:inline-block;background:var(--amarillo);color:#000;font-size:.8rem;font-weight:bold;padding:2px 8px;border-radius:4px}
+
+/* Cinépolis Club */
+.acceso{background:var(--tarjeta);border:1px solid var(--borde);border-radius:8px;padding:20px}
+.formularios{display:flex;flex-wrap:wrap;gap:24px}
+.formulario{flex:1 1 280px}
+.formulario h3{margin-top:0}
+label{display:block;margin:10px 0 4px;font-size:.9rem}
+input{width:100%;padding:10px;border:1px solid var(--borde);border-radius:6px;background:var(--fondo);color:var(--texto);font-size:1rem}
+.tarjeta-club{background:radial-gradient(circle at top left,#2a5298,#0b3a8e);color:#fff;border-radius:12px;padding:16px;max-width:320px;margin-bottom:16px}
+.tarjeta-club strong{color:var(--amarillo)}
+
+/* Columnas laterales (solo en pantallas anchas) */
+.pagina{display:block}
+.lado{display:none}
+@media (min-width:1560px){
+  .pagina{display:grid;grid-template-columns:240px minmax(0,1000px) 240px;gap:20px;justify-content:center;align-items:start}
+  .lado{display:block;position:sticky;top:16px;margin-top:48px}
+}
+.caja{background:var(--tarjeta);border:1px solid var(--borde);border-radius:8px;padding:14px;margin-bottom:16px}
+.caja h3{margin:0 0 8px;font-size:1.05rem;color:var(--azul);border-bottom:3px solid var(--amarillo);padding-bottom:4px}
+@media (prefers-color-scheme:dark){.caja h3{color:var(--amarillo)}}
+.caja p,.caja li{font-size:.9rem;color:var(--suave);margin:4px 0}
+.caja ul,.caja ol{margin:0;padding-left:20px}
+.caja a:hover{text-decoration:underline}
+.caja.azul{background:var(--azul);border-color:var(--azul)}
+.caja.azul h3{color:var(--amarillo)}
+.caja.azul p{color:#fff}
+
+/* Footer */
+footer{background:var(--azul2);color:#fff;padding:24px 16px;margin-top:32px}
+.copy{text-align:center;margin:0;font-size:.85rem;color:#c5cde4}
+</style>
+</head>
+<body>
+
+<!-- ENCABEZADO -->
+<header id="inicio">
+  <h1>CINE<span>POLIS</span></h1>
+  <p>Vive la experiencia del cine · Ciudad Juárez, Chihuahua</p>
+</header>
+
+<!-- BARRA DE NAVEGACIÓN -->
+<nav>
+  <a href="#inicio">Inicio</a>
+  <a href="#cartelera">Cartelera</a>
+  <a href="#estrenos">Próximos estrenos</a>
+  <a href="#club">Cinépolis Club</a>
+  <a href="#acceso" class="destacado">Iniciar sesión / Registro</a>
+</nav>
+
+<!-- CUERPO -->
+<div class="pagina">
+  <aside class="lado">
+    <div class="caja azul">
+      <h3>Únete al Club</h3>
+      <p>Acumula puntos en boletos y dulcería con tu tarjeta Cinépolis Club.</p>
+      <a class="boton" href="#acceso">Registrarme</a>
+    </div>
+    <div class="caja">
+      <h3>Promociones</h3>
+      <ul>
+        <li>Día del cinéfilo</li>
+        <li>Combo pareja</li>
+        <li>Preventas de estrenos</li>
+      </ul>
+    </div>
+    <div class="caja">
+      <h3>Tipos de sala</h3>
+      <ul>
+        <li>Tradicional</li>
+        <li>IMAX</li>
+        <li>4DX</li>
+        <li>VIP</li>
+        <li>Junior</li>
+      </ul>
+    </div>
+  </aside>
+
+  <main>
+
+  <section>
+    <h2>Bienvenido</h2>
+    <p>Consulta las películas en cartelera, descubre los próximos estrenos y entra con tu tarjeta Cinépolis Club para acumular puntos y obtener beneficios.</p>
+    <p><em>Cartelera al 15 de octubre de 2026. Las ilustraciones son de ejemplo, no los carteles oficiales. Los horarios y fechas pueden cambiar según tu cine.</em></p>
+  </section>
+
+  <section id="cartelera">
+    <h2>En cartelera</h2>
+    <div class="peliculas">
+      <article class="pelicula">
+        <div class="cartel c1">
+          <svg viewBox="0 0 100 100" role="img" aria-label="Digger"><path d="M50 10 L70 80 H30Z" fill="none" stroke="#fff" stroke-width="4"/><path d="M38 50H62M43 30H57" stroke="#fff" stroke-width="3"/><path d="M50 80 Q38 92 50 97 Q62 92 50 80Z" fill="#111"/></svg>
+          <img src="digger.png" alt="">
+          <span>Digger</span></div>
+        <div class="info"><span class="fecha">Estreno 1 Oct</span><p>Dir. Alejandro G. Iñárritu. Un magnate petrolero provoca una catástrofe ecológica.</p><a class="boton" href="#acceso">Comprar boletos</a></div>
+      </article>
+      <article class="pelicula">
+        <div class="cartel c8">
+          <svg viewBox="0 0 100 100" role="img" aria-label="El último gran golpe"><rect x="20" y="20" width="60" height="60" rx="6" fill="none" stroke="#fff" stroke-width="4"/><circle cx="50" cy="50" r="14" fill="none" stroke="#fff" stroke-width="4"/><path d="M50 50L58 42" stroke="#fff" stroke-width="3"/></svg>
+          <img src="ultimo gran golpe.png" alt="">
+          <span>El último gran golpe</span></div>
+        <div class="info"><span class="fecha">Estreno 1 Oct</span><p>Dir. Derrick Borte. EE. UU. y Australia.</p><a class="boton" href="#acceso">Comprar boletos</a></div>
+      </article>
+      <article class="pelicula">
+        <div class="cartel c5">
+          <svg viewBox="0 0 100 100" role="img" aria-label="Hope: El primer impacto"><circle cx="50" cy="50" r="22" fill="#fff"/><ellipse cx="50" cy="50" rx="42" ry="10" fill="none" stroke="#fff" stroke-width="3" transform="rotate(-20 50 50)"/><circle cx="85" cy="15" r="5" fill="#ffc400"/></svg>
+          <img src="hope.png" alt="">
+          <span>Hope: El primer impacto</span></div>
+        <div class="info"><span class="fecha">Estreno 8 Oct</span><p>Thriller de ciencia ficción de Na Hong-jin.</p><a class="boton" href="#acceso">Comprar boletos</a></div>
+      </article>
+      <article class="pelicula">
+        <div class="cartel c7">
+          <svg viewBox="0 0 100 100" role="img" aria-label="La caída de la ballena"><ellipse cx="46" cy="55" rx="34" ry="18" fill="#fff"/><path d="M78 52L96 36L92 60Z" fill="#fff"/><circle cx="32" cy="50" r="3" fill="#0b3a8e"/><path d="M5 82Q20 72 35 82T65 82T95 82" fill="none" stroke="#fff" stroke-width="3"/></svg>
+          <img src="caida ballena.png" alt="">
+          <span>La caída de la ballena</span></div>
+        <div class="info"><span class="fecha">Estreno 15 Oct</span><p>Dir. Brian Duffield. Un hombre queda atrapado dentro de una ballena.</p><a class="boton" href="#acceso">Comprar boletos</a></div>
+      </article>
+      <article class="pelicula">
+        <div class="cartel c4">
+          <svg viewBox="0 0 100 100" role="img" aria-label="Street Fighter"><polygon points="50,6 58,34 86,24 68,48 94,62 64,64 66,94 50,72 34,94 36,64 6,62 32,48 14,24 42,34" fill="#ffc400"/><text x="50" y="58" text-anchor="middle" font-size="22" font-weight="bold" fill="#c31432" font-family="Arial">VS</text></svg>
+          <img src="street fighter.png" alt="">
+          <span>Street Fighter</span></div>
+        <div class="info"><span class="fecha">Estreno 15 Oct</span><p>Ryu y Ken enfrentan a otros peleadores en un torneo. También en IMAX.</p><a class="boton" href="#acceso">Comprar boletos</a></div>
+      </article>
+      <article class="pelicula">
+        <div class="cartel c6">
+          <svg viewBox="0 0 100 100" role="img" aria-label="El final"><path d="M44 20H56L90 95H10Z" fill="#fff" opacity=".9"/><path d="M50 24V92" stroke="#111" stroke-width="3" stroke-dasharray="6 6"/></svg>
+          <img src="el final.png" alt="">
+          <span>El final</span></div>
+        <div class="info"><span class="fecha">Estreno 15 Oct</span><p>Jóvenes atrapados en una carretera interminable durante su última noche.</p><a class="boton" href="#acceso">Comprar boletos</a></div>
+      </article>
+    </div>
+  </section>
+
+  <section id="estrenos">
+    <h2>Próximos estrenos</h2>
+    <div class="peliculas">
+      <article class="pelicula">
+        <div class="cartel c5">
+          <svg viewBox="0 0 100 100" role="img" aria-label="Klara y el sol"><circle cx="50" cy="38" r="18" fill="#ffc400"/><path d="M50 8V14M50 62V68M20 38H26M74 38H80M29 17L33 21M71 17L67 21" stroke="#ffc400" stroke-width="3"/><rect x="38" y="64" width="24" height="26" rx="5" fill="#fff"/><circle cx="46" cy="74" r="2.5" fill="#111"/><circle cx="54" cy="74" r="2.5" fill="#111"/></svg>
+          <img src="klara y el sol.png" alt="">
+          <span>Klara y el sol</span></div>
+        <div class="info"><span class="fecha">22 Oct</span><p>Adaptación de la novela de Kazuo Ishiguro.</p><a class="boton" href="#estrenos">Más información</a></div>
+      </article>
+      <article class="pelicula">
+        <div class="cartel c2">
+          <svg viewBox="0 0 100 100" role="img" aria-label="La venganza del Charro Negro"><ellipse cx="50" cy="68" rx="42" ry="10" fill="#fff"/><path d="M30 66Q32 30 50 30Q68 30 70 66Z" fill="#fff"/><path d="M30 60H70" stroke="#c31432" stroke-width="4"/><circle cx="82" cy="18" r="9" fill="#ffc400"/></svg>
+          <img src="charro negro.png" alt="">
+          <span>La venganza del Charro Negro</span></div>
+        <div class="info"><span class="fecha">22 Oct</span><p>Cine mexicano.</p><a class="boton" href="#estrenos">Más información</a></div>
+      </article>
+      <article class="pelicula">
+        <div class="cartel c4">
+          <svg viewBox="0 0 100 100" role="img" aria-label="Amarte"><path d="M50 85C10 55 20 20 50 38C80 20 90 55 50 85Z" fill="#fff"/></svg>
+          <img src="amarte.png" alt="">
+          <span>Amarte</span></div>
+        <div class="info"><span class="fecha">22 Oct</span><p>Cine mexicano.</p><a class="boton" href="#estrenos">Más información</a></div>
+      </article>
+      <article class="pelicula">
+        <div class="cartel c3">
+          <svg viewBox="0 0 100 100" role="img" aria-label="Sensatez y sentimiento"><circle cx="38" cy="50" r="24" fill="none" stroke="#fff" stroke-width="4"/><circle cx="62" cy="50" r="24" fill="none" stroke="#fff" stroke-width="4"/></svg>
+          <img src="sensatez y sentimiento.png" alt="">
+          <span>Sensatez y sentimiento</span></div>
+        <div class="info"><span class="fecha">29 Oct</span><p>Estreno de fin de mes.</p><a class="boton" href="#estrenos">Más información</a></div>
+      </article>
+      <article class="pelicula">
+        <div class="cartel c8">
+          <svg viewBox="0 0 100 100" role="img" aria-label="Ciudad de muertos"><rect x="14" y="32" width="72" height="44" rx="6" fill="#fff"/><rect x="34" y="22" width="22" height="12" fill="#fff"/><circle cx="50" cy="54" r="14" fill="#111"/><circle cx="50" cy="54" r="7" fill="#fff"/></svg>
+          <img src="ciudad de muertos.png" alt="">
+          <span>Ciudad de muertos</span></div>
+        <div class="info"><span class="fecha">29 Oct</span><p>Thriller mexicano inspirado en la obra de Enrique Metinides.</p><a class="boton" href="#estrenos">Más información</a></div>
+      </article>
+      <article class="pelicula">
+        <div class="cartel c7">
+          <svg viewBox="0 0 100 100" role="img" aria-label="Wildwood: El bosque salvaje"><path d="M28 15L48 60H8ZM62 30L86 80H38Z" fill="#fff"/><circle cx="80" cy="14" r="8" fill="#ffc400"/></svg>
+          <img src="wildwood.png" alt="">
+          <span>Wildwood: El bosque salvaje</span></div>
+        <div class="info"><span class="fecha">29 Oct</span><p>Estreno de fin de mes.</p><a class="boton" href="#estrenos">Más información</a></div>
+      </article>
+    </div>
+  </section>
+
+  <section id="club">
+    <h2>Cinépolis Club</h2>
+    <div class="tarjeta-club">
+      <strong>CINÉPOLIS CLUB</strong><br>
+      0000 0000 0000 0000<br>
+      <small>Tu tarjeta de beneficios</small>
+    </div>
+    <p>Con tu tarjeta acumulas puntos en boletos y dulcería, y los canjeas por entradas y combos.</p>
+  </section>
+
+  <!-- INICIO DE SESIÓN Y/O REGISTRO -->
+  <section id="acceso">
+    <h2>Iniciar sesión o registrarse</h2>
+    <div class="acceso">
+      <div class="formularios">
+
+        <form class="formulario" action="#acceso" method="post">
+          <h3>Ya tengo tarjeta Cinépolis Club</h3>
+          <label for="tarjeta">Número de tarjeta</label>
+          <input type="text" id="tarjeta" name="tarjeta" placeholder="0000 0000 0000 0000" inputmode="numeric" required>
+          <label for="pass">Contraseña</label>
+          <input type="password" id="pass" name="pass" required>
+          <button class="boton" type="submit">Entrar</button>
+        </form>
+
+        <form class="formulario" action="#acceso" method="post">
+          <h3>Quiero registrarme</h3>
+          <label for="nombre">Nombre completo</label>
+          <input type="text" id="nombre" name="nombre" required>
+          <label for="correo">Correo electrónico</label>
+          <input type="email" id="correo" name="correo" required>
+          <label for="pass2">Contraseña</label>
+          <input type="password" id="pass2" name="pass2" required>
+          <button class="boton" type="submit">Crear cuenta</button>
+        </form>
+
+      </div>
+    </div>
+  </section>
+
+</main>
+
+  <aside class="lado">
+    <div class="caja">
+      <h3>Top de la semana</h3>
+      <ol>
+        <li><a href="#cartelera">Street Fighter</a></li>
+        <li><a href="#cartelera">La caída de la ballena</a></li>
+        <li><a href="#cartelera">Digger</a></li>
+        <li><a href="#cartelera">Hope: El primer impacto</a></li>
+        <li><a href="#cartelera">El final</a></li>
+      </ol>
+    </div>
+    <div class="caja">
+      <h3>Próximamente</h3>
+      <ul>
+        <li><a href="#estrenos">22 Oct · Klara y el sol</a></li>
+        <li><a href="#estrenos">22 Oct · Amarte</a></li>
+        <li><a href="#estrenos">29 Oct · Ciudad de muertos</a></li>
+      </ul>
+    </div>
+    <div class="caja">
+      <h3>Dulcería</h3>
+      <ul>
+        <li>Palomitas</li>
+        <li>Refrescos</li>
+        <li>Nachos</li>
+        <li>Combos</li>
+      </ul>
+    </div>
+  </aside>
+</div>
+
+
+<!-- FOOTER -->
+<footer>
+  <p class="copy">© Gonzalez Ginez Andres Gael 0847</p>
+</footer>
+
+</body>
+</html>
