@@ -1,0 +1,14 @@
+FOTOS PROPIAS (opcional)
+
+Si quieres usar fotos reales en lugar de los dibujos, pon aqui la foto
+de cada moto con el nombre del modelo en minusculas y con guiones.
+Formatos: jpg, jpeg, png o webp.
+
+Ejemplos:
+  Ducati Panigale V4        ->  ducati-panigale-v4.jpg
+  Yamaha YZF-R1             ->  yamaha-yzf-r1.webp
+  BMW S 1000 RR             ->  bmw-s-1000-rr.png
+  Kawasaki Ninja ZX-10R     ->  kawasaki-ninja-zx-10r.jpg
+
+La pagina usa la foto si existe; si no, usa el dibujo.
+Mejor si las fotos son horizontales (proporcion 15:8 aprox.).
